@@ -1,0 +1,31 @@
+﻿@using Domain
+@model List<Domain.Sample>
+@{
+    ViewBag.Title = "Samples";
+}
+
+<h2>Samples</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>SampleID</th>
+            <th>Barcode</th>
+            <th>CreatedAt</th>
+            <th>Created By</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.SampleId</td>
+                <td>@item.Barcode</td>
+                <td>@item.CreatedAt</td>
+                <td>@item.CreatedBy</td>
+                <td>@item.StatusId</td>
+            </tr>
+        }
+    </tbody>
+</table>
