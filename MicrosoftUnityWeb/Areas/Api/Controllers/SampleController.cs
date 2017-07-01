@@ -11,8 +11,15 @@ namespace MicrosoftUnityWeb.Areas.Api.Controllers
 {
     public class SampleController : ApiController
     {
+
         private IFacade _facade;
-        public Facade FacadeInstance { get; set; }
+
+        public IFacade FacadeInstance
+        {
+            get { return _facade; }
+        }
+
+
 
         public SampleController()
         {
