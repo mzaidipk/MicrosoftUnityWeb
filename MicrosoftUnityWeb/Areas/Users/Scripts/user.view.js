@@ -12,17 +12,13 @@
             var self = this;
             //self.userViewData = ko.observableArray([new userModel(0, 'asd', 'asd')]);
             self.userViewData = ko.observableArray([]);
-            
-
 
             dataservice.getUsers({
                 success: function (data) {
-                    //userdata = data;
-                    //self.userViewData = ko.observableArray(userdata);
                     console.log('data is ', data);
-
-                    ko.utils.arrayPushAll(self.userViewData(), data);
-                    console.log('userdata ', self.userViewData());
+                    // TO ASSIGN VALUES TO VARIABLE OF TYPE KO YOU PASS THEM AS PARAMETERS
+                    self.userViewData(data);
+                    //ko.utils.arrayPushAll(self.userViewData(), data);
                 },
                 error: function (response) {
                     //pageHasErrors(true);
@@ -30,8 +26,6 @@
                     console.log(response);
                 }
             });
-
-            
             
             //self.userViewData = ko.observableArray([{UserId:1, FirstName:"asd", LastName:"asd"}]);
         }
