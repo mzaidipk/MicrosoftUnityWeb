@@ -15,12 +15,18 @@
 
 <button data-bind="click: capitalizeLastName">Go caps</button>*@
 
+<caption>
+    <div style="text-align:right">
+        <button class="btn btn-primary" data-bind="click: addNewUser">Add New</button>
+    </div>
+</caption>
 <table class="table table-striped">
     <thead>
         <tr>
             <th>UserID</th>
             <th>FirstName</th>
             <th>LastName</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody data-bind="foreach: userViewData">
@@ -28,8 +34,17 @@
             <td data-bind="text: userId"></td>
             <td data-bind="text: firstName"></td>
             <td data-bind="text: lastName"></td>
+            <td><a href="#" class="btn btn-success">Edit</a><a href="#" class="btn btn-danger">Delete</a></td>
         </tr>
     </tbody>
+    <tfoot data-bind="visible: addOrEdit, with: addOrEditRow">
+        <tr>
+            <td><input data-bind="value: userId" /></td>
+            <td><input data-bind="value: firstName" /></td>
+            <td><input data-bind="value: lastName" /></td>
+            <td><a href="#" class="btn btn-success">Save</a> <a href="#" data-bind="click: $parent.close" class="btn btn-info">Close</a></td>
+        </tr>
+    </tfoot>
 </table>
 
 @section Scripts{

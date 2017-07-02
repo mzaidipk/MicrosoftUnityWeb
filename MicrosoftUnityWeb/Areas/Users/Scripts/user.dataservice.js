@@ -19,6 +19,31 @@ define("user/user.dataservice", function () {
                         type: 'GET'
                     });
 
+                    // Define request to get items
+                    amplify.request.define('addUser', 'ajax', {
+                        url: ist.siteUrl + '/Api/User/Add',
+                        dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'POST'
+                    });
+
+                    // Define request to get items
+                    amplify.request.define('updateUser', 'ajax', {
+                        url: ist.siteUrl + '/Api/User/Update',
+                        dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'PUT'
+                    });
+
+
+                    // Define request to get items
+                    amplify.request.define('deleteUser', 'ajax', {
+                        url: ist.siteUrl + '/Api/User/Delete',
+                        dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'DELETE'
+                    });
+
 
                     isInitialized = true;
                 }

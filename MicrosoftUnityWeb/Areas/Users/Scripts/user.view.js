@@ -10,6 +10,8 @@
         function  UserViewModel()
         {
             var self = this;
+            self.addOrEdit = ko.observable(false);
+
             //self.userViewData = ko.observableArray([new userModel(0, 'asd', 'asd')]);
             self.userViewData = ko.observableArray([]);
 
@@ -18,7 +20,7 @@
                     console.log('data is ', data);
                     // TO ASSIGN VALUES TO VARIABLE OF TYPE KO YOU PASS THEM AS PARAMETERS
                     self.userViewData(data);
-                    //ko.utils.arrayPushAll(self.userViewData(), data);
+                    //ko.utils.arrayPushAll(self.userViewData, data);
                 },
                 error: function (response) {
                     //pageHasErrors(true);
@@ -27,7 +29,26 @@
                 }
             });
             
-            //self.userViewData = ko.observableArray([{UserId:1, FirstName:"asd", LastName:"asd"}]);
+            // Operations
+            self.addNewUser = function () {
+                self.addOrEditRow(new userModel());
+                self.addOrEdit(true);
+            }
+
+            self.close = function () {
+                console.log('Closing');
+                self.addOrEdit(false);
+                //self.addOrEditRow.dispose();
+            }
+            
+            self.addOrEditRow = ko.observable();
+
+            //self.addOrEditRow = ko.observable(new userModel());
+            //self.addNewUser = function () {
+            //    self.userViewData.push(new userModel(-1, "", ""));
+            //}
+            //self.removeUser = function (seat) { self.seats.remove(seat) }
+
         }
 
         ko.applyBindings(new UserViewModel());
