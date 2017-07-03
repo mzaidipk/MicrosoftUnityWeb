@@ -14,7 +14,7 @@ namespace DataAccess
         IBaseRepository<Sample> SampleRepository { get; }
         IBaseRepository<Status> StatusRepository { get; }
 
-        void Save();
+        int Save();
 
         void Dispose();
 

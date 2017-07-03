@@ -14,9 +14,71 @@ namespace MicrosoftUnityWeb.Areas.Api.Controllers
     {
         private IFacade _facade;
 
+        public IFacade FacadeInstance
+        {
+            get { return _facade; }
+        }
+
         public UserController()
         {
 
+        }
+
+        [HttpPost]
+        public IHttpActionResult Add(User user)
+        {
+            try
+            {
+                var result = this.FacadeInstance.AddUser(user);
+                if(result < 1)
+                {
+                    return InternalServerError(new Exception("Save Failed"));
+                }
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpPut]
+        public IHttpActionResult Update(User user)
+        {
+            try
+            {
+                var result = this.FacadeInstance.UpdateUser(user);
+                if (result < 1)
+                {
+                    return InternalServerError(new Exception("Save Failed"));
+                }
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpDelete]
+        public IHttpActionResult Delete(User user)
+        {
+            try
+            {
+                var result = this.FacadeInstance.DeleteUser(user);
+                if (result < 1)
+                {
+                    return InternalServerError(new Exception("Save Failed"));
+                }
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
         [HttpGet]
@@ -35,7 +97,7 @@ namespace MicrosoftUnityWeb.Areas.Api.Controllers
         //[Route("User/GetAllUsers")]
         public IQueryable<User> GetAllUsers()
         {
-            var users = this._facade.GetAllUsers().ToList<User>();
+            var users = this.FacadeInstance.GetAllUsers().ToList<User>();
             return users.AsQueryable();
         }
 

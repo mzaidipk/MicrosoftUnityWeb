@@ -56,10 +56,40 @@ define("user/user.dataservice", function () {
                     success: callbacks.success,
                     error: callbacks.error,
                 });
+            },
+            addUser = function (param, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'addUser',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: param
+                });
+            },
+            updateUser = function (param, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'updateUser',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: param
+                });
+            },
+            deleteUser = function (param, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'deleteUser',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: param
+                });
             };
 
         return {
             getUsers: getUsers,
+            addUser: addUser,
+            updateUser: updateUser,
+            deleteUser: deleteUser
         };
     })();
 

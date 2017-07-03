@@ -82,9 +82,9 @@ namespace DataAccess
             this._disposed = true;
         }
 
-        public void Save()
+        public int Save()
         {
-            this.dbContext.SaveChanges();
+            return this.dbContext.SaveChanges();
         }
     }
 }
